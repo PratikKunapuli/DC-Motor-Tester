@@ -21,6 +21,11 @@ over_center_spring_assist_torque = 0.0 #torque provided varying with sin of angl
 total_time = 0.0
 arm_inertia = arm_mass * arm_com * arm_com
 
+"""
+Arm Up test. This test uses data from FRC Team 254 as an example to verify simulation results.
+This test simulates an arm moving from it's "down" position back to  vertical.
+"""
+
 while testGearbox.position < math.pi/2 and total_time < 1.0:
     gravity_torque = 9.8 * arm_com * arm_mass * math.sin(testGearbox.position)
     current = testGearbox.current * 2
@@ -36,6 +41,14 @@ while testGearbox.position < math.pi/2 and total_time < 1.0:
     hook_position.append((math.pi/2-math.sin(testGearbox.position)) * arm_com * 2)
     currents.append(testGearbox.current)
     total_time += .0001
+
+
+
+"""
+Arm down test. This test uses data from FRC Team 254 as an example to verify simulation results.
+This test simulates an arm moving 90 degrees down from vertical.
+"""
+
 total_time = 0
 while testGearbox.position > 0 and total_time < 1.0:
     gravity_torque = 9.8 * arm_com * arm_mass * math.sin(testGearbox.position)
@@ -54,6 +67,11 @@ while testGearbox.position > 0 and total_time < 1.0:
     total_time += .0001
 print("Total time: ", total_time)
 
+
+
+"""
+Simple test running for 1 second at 1 millisecond steps. 
+"""
 """
 for i in range(1,1000):
     testGearbox.step(-12.0, 0.04, -9.8/.2, 0.001)
@@ -62,8 +80,12 @@ for i in range(1,1000):
         velocities.append(testGearbox.velocity)
         currents.append(testGearbox.current)
 """
+
+#Uncomment for plotting selected data
 #plt.plot(positions)
 #plt.plot(velocities)
 #plt.plot(currents)
+
+
 plt.plot(hook_position)
 plt.show()

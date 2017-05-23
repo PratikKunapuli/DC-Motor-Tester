@@ -1,3 +1,5 @@
+import math 
+
 class DCMotor(object):
     def __init__(self, motorName):
         if motorName == "RS775" :
